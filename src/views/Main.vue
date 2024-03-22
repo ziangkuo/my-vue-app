@@ -6,7 +6,9 @@
                 <common-aside />
            </el-aside>
            <el-container>
-              <el-header>Header</el-header>
+              <el-header>
+                <common-header />
+              </el-header>
               <el-main>
                 <!-- 路由出口和匹配的组件将渲染在这里 -->
                 <router-view></router-view>
@@ -18,10 +20,12 @@
 
 <script>
 import CommonAside from '../components/CommonAside.vue';
+import CommonHeader from '../components/CommonHeader.vue';
 
 export default {
     components: {
-            CommonAside
+            CommonAside,
+            CommonHeader
         },
     data(){
         return{
@@ -31,3 +35,9 @@ export default {
     }
 }
 </script>
+
+<style lang="less" scoped>
+.el-header{
+    padding:0
+}
+</style>
