@@ -111,7 +111,10 @@ export default {
         },
         clickMenu(item) {
             console.log(item);
-            this.$router.push(item.path);
+            //当页面路由和菜单路由一致时，不跳转
+            if (this.$route.path === item.path && (this.$route.path === '/home' && (item.path === '/'))) {
+                this.$router.push(item.path);
+            };
         }
     },
     computed: {
