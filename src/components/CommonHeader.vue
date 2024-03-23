@@ -51,7 +51,6 @@ export default {
         color: #fff;
         font-size: 14px;
         margin-left: 10px;
-        ;
     }
     .user{
         width : 40px;

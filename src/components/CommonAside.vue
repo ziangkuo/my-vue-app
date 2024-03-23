@@ -9,7 +9,7 @@
              text-color="#fff"
              active-text-color="#ffd04b">
     <h3>
-        SUBTITLE SYSTEM
+        {{isCollapse? 'TITLE': 'SUBTITLE SYSTEM'}}
     </h3>
         <el-menu-item @click="clickMenu(item)"
           v-for="item in noChildren" :key="item.name" :index="item.name">
@@ -129,3 +129,9 @@ export default {
     }
 }
 </script>
+
+<style lang="less" scoped>
+.el-menu{
+    border-right: none;
+}
+</style>
