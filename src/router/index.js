@@ -7,6 +7,9 @@ import Video from '../views/Video.vue'
 import Voice from '../views/Voice.vue'
 import Page1 from '../views/Pageone.vue'
 import Page2 from '../views/Pagetwo.vue'
+import Login from '../views/Login.vue'
+
+
 vue.use(vueRouter)
 
 const routes = [
@@ -22,7 +25,12 @@ const routes = [
          {path: 'page1', component: Page1},
           {path: 'page2', component: Page2}
        ]
-    }
+    },
+    {
+      path:'/login',
+      name:'login',
+      component: Login,
+    },
     
   ]
 
