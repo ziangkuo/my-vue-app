@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
     next({ name: 'login' });
   } else if (token && to.name === 'login') {
     //token存在，说明已经登录，跳转到首页
-    next({ path: 'home' });
+    next({ name: 'home' });
   } else {
     next();
   }

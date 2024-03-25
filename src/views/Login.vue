@@ -17,51 +17,55 @@
 import Mock from 'mockjs'
 import Cookie from 'js-cookie'
 import { getMenu } from '../api'
-export default{
-    data(){
-        return{
-            form:{
-                mail:'',
-                password:''
+
+
+export default {
+    data() {
+        return {
+            form: {
+                mail: '',
+                password: ''
             },
-            rules:{
-                mail:[
-                    {required:true,message:'请输入邮箱',trigger:'blur'},
-                    {type:'email',message:'请输入正确的邮箱地址',trigger:'blur'}
+            rules: {
+                mail: [
+                    { required: true, message: '请输入邮箱', trigger: 'blur' },
+                    { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
                 ],
-                password:[
-                    {required:true,message:'请输入密码',trigger:'blur'},
-                    {min:6,max:12,message:'密码长度在6-12位之间',trigger:'blur'}
+                password: [
+                    { required: true, message: '请输入密码', trigger: 'blur' },
+                    { min: 6, max: 12, message: '密码长度在6-12位之间', trigger: 'blur' }
                 ]
             }
-            
+
         }
     },
-
-    methods: {
-        submit() {
-            const token = Mock.mock('@guid')
+    methods:{
+        submit(){
+            const token = Mock.Random.guid()
             Cookie.set('token', token)
             this.$router.push('/home')
         }
     }
+
 }
 </script>
 
 <style lang="less" scoped>
-.login-container{
+.login-container {
     width: 400px;
     margin: 180px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 15px;
     box-shadow: 0 0 10px #ccc;
-    .title{
+
+    .title {
         text-align: center;
         font-size: 24px;
         margin-bottom: 20px;
     }
-    .el-button{
+
+    .el-button {
         text-align: center;
     }
 }

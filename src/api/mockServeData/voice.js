@@ -1,6 +1,6 @@
 import Mock from "mockjs";
 
-//图标数据
+//图表数据
 
 let list = []
 export default {
@@ -93,37 +93,37 @@ export default {
                 tableData: [
                     {
                         name: 'Apple',
-                        todaytBuy: 100,
+                        todayBuy: 100,
                         monthBuy: 1000,
                         totalBuy: 10000
                     },
                     {
                         name: 'Huawei',
-                        todaytBuy: 200,
+                        todayBuy: 200,
                         monthBuy: 2000,
                         totalBuy: 20000
                     },
                     {
                         name: 'Xiaomi',
-                        todaytBuy: 300,
+                        todayBuy: 300,
                         monthBuy: 3000,
                         totalBuy: 30000
                     },
                     {
                         name: 'Oppo',
-                        todaytBuy: 400,
+                        todayBuy: 400,
                         monthBuy: 4000,
                         totalBuy: 40000
                     },
                     {
                         name: 'Vivo',
-                        todaytBuy: 500,
+                        todayBuy: 500,
                         monthBuy: 5000,
                         totalBuy: 50000
                     },
                     {
                         name: 'Samsung',
-                        todaytBuy: 600,
+                        todayBuy: 600,
                         monthBuy: 6000,
                         totalBuy: 60000
                     }

@@ -1,10 +1,9 @@
-import http from "@/utils/request";
+import http from "../utils/request";
 
-//请求video数据的接口
-
+//请求数据的接口
  export const getData = () => {
     //返回一个promise对象
-    return http.get('/video/getData');
+    return http.get('/voice/getData');
   }
 
   export const getMenu = () => {

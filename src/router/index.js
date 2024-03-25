@@ -18,12 +18,12 @@ const routes = [
        component: Main,
        redirect: '/home',//重定向
        children: [
-         { path: 'home', component: Home },
-         { path: 'user', component: User },
-         {path: 'video', component: Video},
-         {path: 'voice', component: Voice},
-         {path: 'page1', component: Page1},
-          {path: 'page2', component: Page2}
+         { path: 'home',component: Home, name: 'home'},
+         { path: 'user', component: User, name: 'user'},
+         {path: 'video', component: Video, name: 'video'},
+         {path: 'voice', component: Voice, name: 'voice'},
+         {path: 'page1', component: Page1, name: 'page1'},
+          {path: 'page2', component: Page2, name: 'page2'}
        ]
     },
     {

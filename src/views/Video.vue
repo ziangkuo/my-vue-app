@@ -3,15 +3,18 @@
         <el-col :span="16">
             <el-card class="box-card" style="padding-right: 10px;">
                 <div class = "video">
-                    <video src="../assets/示例视频.mp4"></video>
+                    <video ref="video" src="../assets/示例视频.mp4"></video>
                 </div>
                 
             </el-card>
         </el-col>
         <el-col :span="8" style="padding-left: 10px;">
             <div class="subtitle">
-                <el-card :body-style="{display:'flex', }">
-                    <p v-for="(subtitle, index) in subtitles" :key="index">{{ subtitle }}</p>
+                <el-card :body-style="{display:'flex', flexDirection: 'column', alignItems: 'start', padding: '10px'}">
+                    <div v-for="(subtitle, index) in subtitles" :key="index" class="subtitle-text">
+                        <p>{{ subtitle.text }}</p>
+                        <p>{{ subtitle.start }} --> {{ subtitle.end }}</p>
+                    </div>
                 </el-card>
             </div>
         </el-col>
@@ -19,25 +22,42 @@
 </template>
 
 <script>
-
-import {getData} from '../api'
+import Plyr from 'plyr'
+import 'plyr/dist/plyr.css'
 export default {
     data() {
         return {
-            subtitles: [
-                // 这里是你的字幕
-                "字幕 1",
-                "字幕 2",
-                // ...
-            ]
+            player: null,
+            subtitles: []
         }
     },
     mounted(){
-        getData().then((data)=>{
-            console.log(data)
-        })
+        this.player = new Plyr(this.$refs.video)
+        this.loadSubtitles()
+    },
+    beforeDestroy(){
+        if(this.player){
+            this.player.destroy()
+        
+    }
+},
+methods: {
+    async loadSubtitles() {
+        // Load the .srt file
+        const response = await fetch('../assets/示例视频.srt')
+        const srtText = await response.text()
+
+        // Parse the .srt file
+        const lines = srtText.split('\n')
+        for (let i = 0; i < lines.length; i += 4) {
+            const text = lines[i + 2]
+            const [start, end] = lines[i + 1].split(' --> ')
+            this.subtitles.push({ text, start, end })
+        }
     }
 }
+}
+
 </script>
 
 <style lang="less" scoped>
@@ -102,5 +122,14 @@ export default {
         color: #999999;
         text-align: center;
     }
+}
+.subtitle-text {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
 }
 </style>

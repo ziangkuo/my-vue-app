@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const http=axios.create({
-    // 通用请求地址前缀
+const http =axios.create({
+    // 通用请求地址前缀，如果有真实的 api 可以改成真实的地址
     baseURL: '/api',
     // 请求超时时间
     timeout: 10000,
@@ -27,5 +27,5 @@ http.interceptors.response.use(function (response) {
     return Promise.reject(error);
   });
 
-  
-export default http;
+
+export default http
