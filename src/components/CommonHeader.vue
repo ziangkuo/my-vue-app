@@ -1,9 +1,9 @@
 <template>
     <div class="header-container">
-        <div class="l-content">
+        <!-- <div class="l-content">
             <el-button @click="handleMenu" icon="el-icon-menu" size="mini"></el-button>
             <span class="text">首页</span>
-        </div>
+        </div> -->
         <div class="r-content">
             <el-dropdown>
                 <span class="el-dropdown-link">
@@ -61,6 +61,11 @@ export default {
         width : 40px;
         height: 40px;
         border-radius: 50%;
+    }
+    .r-content {
+    position: absolute;
+    right: 20px; /* 将 .r-content 推到右侧 */
+    top: 10px; /* 根据需要调整 */
     }
 }
 </style>
