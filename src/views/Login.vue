@@ -15,7 +15,6 @@
         <el-button @click="handleSignInGoogle">login</el-button>
     </el-form-item>
     </el-form>
-
     
 </template>
 
@@ -26,7 +25,6 @@ import { getMenu } from '../api'
 import firebaseConfig from '../firebase/init.js'
 import { getAuth, signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth"
 
-firebaseConfig
 
 const provider = new GoogleAuthProvider()
 const auth = getAuth()
