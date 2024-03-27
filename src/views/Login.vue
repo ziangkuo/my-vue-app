@@ -10,21 +10,35 @@
         <el-form-item style="display: flex; justify-content: center ;">
             <el-button @click="submit" type="primary">登录</el-button>
         </el-form-item>
+        <el-form-item id= "GoogleSignIn" v-if="!isSignedIn">
+        <h3>Google SignIn </h3>
+        <el-button @click="handleSignInGoogle">login</el-button>
+    </el-form-item>
     </el-form>
+
+    
 </template>
 
 <script>
 import Mock from 'mockjs'
 import Cookie from 'js-cookie'
 import { getMenu } from '../api'
+import firebaseConfig from '../firebase/init.js'
+import { getAuth, signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth"
 
+firebaseConfig
+
+const provider = new GoogleAuthProvider()
+const auth = getAuth()
 
 export default {
     data() {
         return {
             form: {
                 mail: '',
-                password: ''
+                password: '',
+                user: '',
+                isSignedIn: false,
             },
             rules: {
                 mail: [
@@ -44,9 +58,27 @@ export default {
             const token = Mock.Random.guid()
             Cookie.set('token', token)
             this.$router.push('/home')
+        },
+
+        handleSignInGoogle() {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    this.isSignedIn = true
+                    this.$router.push('/home')
+                }).catch((error) => {
+                  console.log(error)
+                });         
+            },
+        handleSignOutGoogle() {
+            const auth = getAuth();
+                signOut(auth).then(() => {
+                    this.user = ''
+                    this.isSignedIn = false
+                }).catch((error) => {
+                    console.log(error)
+                });
         }
     }
-
 }
 </script>
 
