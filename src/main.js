@@ -7,6 +7,9 @@ import router from "./router";
 import store from "./store";
 import "./api/mock";
 import Cookie from "js-cookie";
+import axios from 'axios';
+
+Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false;
 // Vue.use(Row)

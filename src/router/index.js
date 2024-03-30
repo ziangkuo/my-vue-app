@@ -8,6 +8,7 @@ import Voice from '../views/Voice.vue'
 import Page1 from '../views/Pageone.vue'
 import Page2 from '../views/Pagetwo.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 
 
 vue.use(vueRouter)
@@ -30,6 +31,11 @@ const routes = [
       path:'/login',
       name:'login',
       component: Login,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register,
     },
     
   ]
