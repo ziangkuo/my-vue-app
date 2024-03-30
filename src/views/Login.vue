@@ -18,9 +18,9 @@
             <router-link to="/register">Register</router-link>
         </el-form-item>
 
-        <el-form-item id= "GoogleSignIn" v-if="!isSignedIn">
+        <el-form-item id= "GoogleSignIn" v-if="!form.isSignedIn">
         <h3>Google SignIn </h3>
-        <el-button @click="handleSignInGoogle">login</el-button>
+        <el-button @click="handleSignInGoogle">Login</el-button>
     </el-form-item>
     </el-form>
     
@@ -31,8 +31,7 @@ import Mock from 'mockjs'
 import Cookie from 'js-cookie'
 import { getMenu } from '../api'
 import firebaseConfig from '../firebase/init.js'
-import { getAuth, signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth"
-
+import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth"
 
 const provider = new GoogleAuthProvider()
 const auth = getAuth()
@@ -61,31 +60,26 @@ export default {
     },
     methods:{
         submit(){
-            const token = Mock.Random.guid()
-            Cookie.set('token', token)
-            this.$router.push('/home')
+            signInWithEmailAndPassword(auth, this.form.mail, this.form.password)
+            .then(() => {
+                this.$router.push('/home')
+            })
+            .catch(error => {
+                alert(error.message);
+            });
         },
-
+    },
         handleSignInGoogle() {
             signInWithPopup(auth, provider)
                 .then((result) => {
-                    this.isSignedIn = true
+                    this.form.isSignedIn = true
                     this.$router.push('/home')
                 }).catch((error) => {
-                  console.log(error)
+                    console.log(error)
                 });         
             },
-        handleSignOutGoogle() {
-            const auth = getAuth();
-                signOut(auth).then(() => {
-                    this.user = ''
-                    this.isSignedIn = false
-                }).catch((error) => {
-                    console.log(error)
-                });
-        }
     }
-}
+    
 </script>
 
 <style lang="less" scoped>

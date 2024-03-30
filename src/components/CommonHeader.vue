@@ -11,7 +11,7 @@
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item>个人中心</el-dropdown-item>
-                    <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
+                    <el-dropdown-item @click.native="handleSignOut">退出</el-dropdown-item>
                    
                 </el-dropdown-menu>
             </el-dropdown>
@@ -23,6 +23,7 @@
 
 
 import Cookie from 'js-cookie'
+import { getAuth, signOut } from "firebase/auth";
 
 export default {
     data() {
@@ -34,13 +35,21 @@ export default {
         handleMenu(){
             this.$store.commit('collapseMenu')
         },
-        logout(){
-            Cookie.remove('token')
-            this.$router.push('/login')
+        handleSignOut() {
+            const auth = getAuth();
+            signOut(auth)
+            .then(() => {
+               this.$store.commit('clearUserData');
+
+                this.$router.push('/login');
+            })
+            .catch((error) => {
+                console.error("Sign out error:", error);
+            });
         }
-    
     }
 }
+
 </script>
 
 <style lang="less" scoped>
