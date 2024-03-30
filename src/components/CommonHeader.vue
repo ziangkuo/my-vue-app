@@ -40,7 +40,6 @@ export default {
             signOut(auth)
             .then(() => {
                this.$store.commit('clearUserData');
-
                 this.$router.push('/login');
             })
             .catch((error) => {
