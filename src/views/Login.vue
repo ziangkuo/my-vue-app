@@ -68,7 +68,6 @@ export default {
                 alert(error.message);
             });
         },
-    },
         handleSignInGoogle() {
             signInWithPopup(auth, provider)
                 .then((result) => {
@@ -78,8 +77,9 @@ export default {
                     console.log(error)
                 });         
             },
-    }
-    
+    },
+}
+
 </script>
 
 <style lang="less" scoped>
